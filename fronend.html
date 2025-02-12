@@ -128,24 +128,26 @@
             </section>
             
             <section id="inventory" class="section hidden">
-                <h2 class="text-3xl font-bold mb-4 text-gray-800">Inventory Management</h2>
+                <h2 class="text-3xl font-bold mb-4 text-yellow-400">Inventory Management</h2>
+            
+                <!-- Inventory Input Form -->
                 <div class="mb-4">
-                    <input id="item-name" type="text" placeholder="Item Name" class="p-2 border rounded">
-                    <input id="item-quantity" type="number" placeholder="Quantity" class="p-2 border rounded">
-                    <input id="item-expiry" type="date" class="p-2 border rounded">
-                    <button onclick="addItem()" class="bg-green-500 text-white px-4 py-2 rounded">Add Item</button>
+                    <input type="text" id="itemName" placeholder="Item Name" class="p-2 border rounded">
+                    <input type="number" id="itemQuantity" placeholder="Quantity" class="p-2 border rounded">
+                    <button onclick="addItem()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Item</button>
                 </div>
-                <table class="w-full bg-white shadow-md rounded-lg">
+            
+                <!-- Inventory Table -->
+                <table class="w-full border-collapse border border-gray-400">
                     <thead>
-                        <tr class="bg-gray-200">
-                            <th class="p-2">Item Name</th>
-                            <th class="p-2">Quantity</th>
-                            <th class="p-2">Expiry Date</th>
-                            <th class="p-2">Actions</th>
+                        <tr class="bg-gray-800 text-white">
+                            <th class="border border-gray-500 px-4 py-2">Item Name</th>
+                            <th class="border border-gray-500 px-4 py-2">Quantity</th>
+                            <th class="border border-gray-500 px-4 py-2">Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="inventory-list">
-                        <!-- Inventory items will be added dynamically here -->
+                    <tbody id="inventoryTable">
+                        <!-- Inventory items will be added here dynamically -->
                     </tbody>
                 </table>
             </section>
@@ -153,15 +155,33 @@
             <section id="recipes" class="section hidden">
                 <h2 class="text-3xl font-bold mb-4 text-yellow-400">Recipe Suggestions</h2>
             
-                <!-- Recipe Input Form -->
+                <!-- AI Suggested Recipes Table -->
+                <div class="mb-4">
+                    <button onclick="showSuggestedRecipes()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Show AI Suggested Recipes</button>
+                </div>
+            
+                <table class="w-full border-collapse border border-gray-400 mt-4">
+                    <thead>
+                        <tr class="bg-gray-800 text-white">
+                            <th class="border border-gray-500 px-4 py-2">Recipe Name</th>
+                            <th class="border border-gray-500 px-4 py-2">Ingredients</th>
+                        </tr>
+                    </thead>
+                    <tbody id="suggestedRecipesTable">
+                        <!-- AI suggested recipes will be added here dynamically -->
+                    </tbody>
+                </table>
+            
+                <!-- Add New Recipe -->
+                <h3 class="text-2xl font-bold mt-6 text-yellow-400">Add Your Own Recipe</h3>
                 <div class="mb-4">
                     <input type="text" id="recipeName" placeholder="Recipe Name" class="p-2 border rounded">
-                    <input type="text" id="recipeIngredients" placeholder="Ingredients (comma-separated)" class="p-2 border rounded">
+                    <input type="text" id="recipeIngredientsInput" placeholder="Ingredients (comma-separated)" class="p-2 border rounded">
                     <button onclick="addRecipe()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Add Recipe</button>
                 </div>
             
-                <!-- Recipes Table -->
-                <table class="w-full border-collapse border border-gray-400">
+                <!-- User-Added Recipes Table -->
+                <table class="w-full border-collapse border border-gray-400 mt-4">
                     <thead>
                         <tr class="bg-gray-800 text-white">
                             <th class="border border-gray-500 px-4 py-2">Recipe Name</th>
@@ -170,10 +190,11 @@
                         </tr>
                     </thead>
                     <tbody id="recipeTable">
-                        <!-- Recipes will be added here dynamically -->
+                        <!-- User-added recipes will be added here dynamically -->
                     </tbody>
                 </table>
             </section>
+            
             
             <section id="notifications" class="section hidden">
                 <h2 class="text-3xl font-bold mb-4 text-gray-800">Expiration Alerts</h2>
