@@ -27,9 +27,10 @@
         .sidebar-link {
             transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
             display: block;
-            padding: 10px;
+            padding: 15px;
             border-radius: 5px;
             color: #fbbf24;
+            font-size: 1.2rem;
         }
         .sidebar-link:hover {
             color: #fbbf24;
@@ -38,12 +39,17 @@
         .navbar {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fbbf24;
+            padding: 20px;
+            font-size: 1.2rem;
         }
         .navbar a {
             color: #fbbf24;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
         }
         .navbar a:hover {
-            color: #fbbf24;
+            background: rgba(255, 255, 255, 0.2);
         }
         .container {
             max-width: 800px;
@@ -75,6 +81,46 @@
             font-size: 1rem;
             color: #555;
         }
+        .stars {
+            display: flex;
+            gap: 5px;
+        }
+        .star {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #ccc;
+        }
+        .star.selected {
+            color: #fbbf24;
+        }
+        .social-media {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .social-media a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.5rem;
+            transition: background 0.3s ease-in-out;
+        }
+        .social-media a.facebook {
+            background: #3b5998;
+        }
+        .social-media a.twitter {
+            background: #1da1f2;
+        }
+        .social-media a.instagram {
+            background: #e1306c;
+        }
+        .social-media a:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body class="flex h-screen">
@@ -83,7 +129,7 @@
     
     <!-- Sidebar -->
     <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-gray-900 text-white p-5 transition-transform transform -translate-x-full">
-        <h1 class="text-xl font-bold mb-5">🥗 Smart Pantry</h1>
+        <h1 class="text-2xl font-bold mb-5">🥗 Smart Pantry</h1>
         <nav>
             <ul class="space-y-3">
                 <li><a href="dashboard.html" class="sidebar-link flex items-center space-x-2">
@@ -123,7 +169,7 @@
         <!-- Navbar -->
         <div class="navbar shadow-md p-4 flex items-center justify-between rounded-lg">
             <button id="toggleSidebar" class="md:hidden bg-gray-900 text-white px-3 py-2 rounded">☰</button>
-            <h2 class="text-lg font-semibold">Smart Pantry Dashboard</h2>
+            <h2 class="text-2xl font-semibold">Smart Pantry Dashboard</h2>
             <nav class="hidden md:flex space-x-4">
                 <a href="dashboard.html" class="flex items-center space-x-2">
                     <i class="fas fa-tachometer-alt"></i>
@@ -160,12 +206,59 @@
             <div class="review">
                 <h3>John Doe</h3>
                 <p>Smart Pantry has completely changed the way I manage my kitchen. It's so easy to keep track of everything now!</p>
+                <div class="stars">
+                    <span class="star selected">★</span>
+                    <span class="star selected">★</span>
+                    <span class="star selected">★</span>
+                    <span class="star selected">★</span>
+                    <span class="star">★</span>
+                </div>
             </div>
             <div class="review">
                 <h3>Jane Smith</h3>
                 <p>I love the recipe suggestions! They help me make the most of what I have in my pantry.</p>
+                <div class="stars">
+                    <span class="star selected">★</span>
+                    <span class="star selected">★</span>
+                    <span class="star selected">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
             </div>
             <!-- Add more reviews as needed -->
+            <form id="reviewForm" class="mt-4">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700">Name:</label>
+                    <input type="text" id="name" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="review" class="block text-gray-700">Review:</label>
+                    <textarea id="review" class="w-full px-3 py-2 border rounded" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Rating:</label>
+                    <div class="stars" id="ratingStars">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+            </form>
+            <div id="reviewsContainer" class="mt-4"></div>
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank" class="facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
         </div>
     </div>
     
@@ -178,6 +271,32 @@
         document.getElementById("openSidebar").addEventListener("click", function() {
             document.getElementById("sidebar").classList.toggle("transform");
             document.getElementById("sidebar").classList.toggle("-translate-x-full");
+        });
+
+        document.getElementById("reviewForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const review = document.getElementById("review").value;
+            const rating = document.querySelector('#ratingStars .selected') ? document.querySelector('#ratingStars .selected').dataset.value : 0;
+            const reviewContainer = document.createElement("div");
+            reviewContainer.classList.add("review");
+            reviewContainer.innerHTML = `<h3>${name}</h3><p>${review}</p><div class="stars">${'★'.repeat(rating)}${'★'.repeat(5 - rating)}</div>`;
+            document.getElementById("reviewsContainer").appendChild(reviewContainer);
+            document.getElementById("reviewForm").reset();
+        });
+
+        document.querySelectorAll('#ratingStars .star').forEach(star => {
+            star.addEventListener('click', function() {
+                document.querySelectorAll('#ratingStars .star').forEach(s => s.classList.remove('selected'));
+                this.classList.add('selected');
+                let previousSiblings = [];
+                let sibling = this.previousElementSibling;
+                while (sibling) {
+                    previousSiblings.push(sibling);
+                    sibling = sibling.previousElementSibling;
+                }
+                previousSiblings.forEach(s => s.classList.add('selected'));
+            });
         });
     </script>
 </body>
