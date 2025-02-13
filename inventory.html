@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Pantry</title>
+    <title>Inventory - Smart Pantry</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .hidden-sidebar {
@@ -21,7 +21,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Increased darkness for better visibility */
+            background: rgba(0, 0, 0, 0.6);
             z-index: -1;
         }
         .sidebar-link {
@@ -29,36 +29,27 @@
             display: block;
             padding: 10px;
             border-radius: 5px;
-            color: #fbbf24; /* Changed text color */
+            color: #fbbf24;
         }
         .sidebar-link:hover {
             color: #fbbf24;
             background: rgba(255, 255, 255, 0.2);
         }
-        .card {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-            color: #333333; /* Changed text color */
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
         .navbar {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fbbf24; /* Changed text color */
+            color: #fbbf24;
         }
         .navbar a {
-            color: #fbbf24; /* Changed text color */
+            color: #fbbf24;
         }
         .navbar a:hover {
             color: #fbbf24;
         }
         .section h2 {
-            color: #fbbf24; /* Changed text color */
+            color: #fbbf24;
         }
         .section p {
-            color: #fbbf24; /* Changed text color */
+            color: #fbbf24;
         }
     </style>
 </head>
@@ -141,84 +132,11 @@
             </nav>
         </div>
         
-        <!-- Dashboard Content -->
+        <!-- Inventory Content -->
         <main class="p-5 flex-1 overflow-y-auto">
-            <section id="dashboard" class="section">
-                <h2 class="text-3xl font-bold mb-4 text-gray-800">Welcome to Your Pantry</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="p-6 rounded-lg shadow-xl text-center card">
-                        <h3 class="text-lg font-semibold">Total Items</h3>
-                        <p id="total-items" class="text-3xl font-bold">0</p>
-                    </div>
-                    <div class="p-6 rounded-lg shadow-xl text-center card">
-                        <h3 class="text-lg font-semibold">Expiring Soon</h3>
-                        <p id="expiring-items" class="text-3xl font-bold">0</p>
-                    </div>
-                    <div class="p-6 rounded-lg shadow-xl text-center card">
-                        <h3 class="text-lg font-semibold">Recipes Available</h3>
-                        <p id="recipes-available" class="text-3xl font-bold">0</p>
-                    </div>
-                </div>
-                <div class="mt-6">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Recent Activities</h3>
-                    <ul class="space-y-4">
-                        <li class="bg-white p-4 rounded-lg shadow-md">
-                            <p class="text-gray-700">Added <strong>5 Apples</strong> to the inventory.</p>
-                            <span class="text-gray-500 text-sm">2 hours ago</span>
-                        </li>
-                        <li class="bg-white p-4 rounded-lg shadow-md">
-                            <p class="text-gray-700">Removed <strong>2 Bananas</strong> from the inventory.</p>
-                            <span class="text-gray-500 text-sm">1 day ago</span>
-                        </li>
-                        <li class="bg-white p-4 rounded-lg shadow-md">
-                            <p class="text-gray-700">Updated expiration date for <strong>Milk</strong>.</p>
-                            <span class="text-gray-500 text-sm">3 days ago</span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            
-            <section id="inventory" class="section hidden">
+            <section id="inventory" class="section">
                 <h2 class="text-3xl font-bold mb-4 text-gray-800">Inventory Management</h2>
                 <p>Manage your pantry items here...</p>
-            </section>
-            
-            <section id="recipes" class="section hidden">
-                <h2 class="text-3xl font-bold mb-4 text-gray-800">Recipe Suggestions</h2>
-                <p>Find meal ideas based on your ingredients...</p>
-            </section>
-            
-            <section id="notifications" class="section hidden">
-                <h2 class="text-3xl font-bold mb-4 text-gray-800">Expiration Alerts</h2>
-                <p>Stay updated with expiring items...</p>
-            </section>
-            
-            <!-- Social Media Links -->
-            <section id="social-media" class="section mt-6">
-                <h2 class="text-3xl font-bold mb-4 text-gray-800">Follow Us</h2>
-                <div class="flex flex-col space-y-4">
-                    <a href="https://facebook.com" target="_blank" class="text-blue-600 flex items-center space-x-2">
-                        <i class="fab fa-facebook-f"></i>
-                        <span>Facebook</span>
-                    </a>
-                    <a href="https://twitter.com" target="_blank" class="text-blue-400 flex items-center space-x-2">
-                        <i class="fab fa-twitter"></i>
-                        <span>Twitter</span>
-                    </a>
-                    <a href="https://instagram.com" target="_blank" class="text-pink-600 flex items-center space-x-2">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </a>
-                </div>
-            </section>
-            
-            <!-- Location Section -->
-            <section id="location" class="section mt-6">
-                <h2 class="text-3xl font-bold mb-4 text-gray-800">Our Location</h2>
-                <p class="text-gray-700">123 Pantry Lane, Food City, FC 12345</p>
-                <div class="mt-4 flex justify-center">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.835434509374!2d144.9537353153169!3d-37.81627937975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d7f7f7f7f7f7!2s123%20Pantry%20Lane%2C%20Food%20City%2C%20FC%2012345!5e0!3m2!1sen!2sus!4v1633071234567!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
             </section>
         </main>
     </div>
@@ -233,19 +151,6 @@
             document.getElementById("sidebar").classList.toggle("transform");
             document.getElementById("sidebar").classList.toggle("-translate-x-full");
         });
-
-        // Mock data for dashboard
-        document.getElementById("total-items").textContent = 15;
-        document.getElementById("expiring-items").textContent = 3;
-        document.getElementById("recipes-available").textContent = 7;
-
-        // Function to show sections dynamically
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById(sectionId).classList.remove('hidden');
-        }
     </script>
 </body>
 </html>

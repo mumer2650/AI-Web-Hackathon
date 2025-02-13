@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes - Smart Pantry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden-sidebar {
+            transform: translateX(-100%);
+        }
+        body {
+            background: url('1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Increased darkness for better visibility */
+            z-index: -1;
+        }
+        .sidebar-link {
+            transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fbbf24;
+        }
+        .sidebar-link:hover {
+            color: #fbbf24;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fbbf24;
+        }
+        .navbar a {
+            color: #fbbf24;
+        }
+        .navbar a:hover {
+            color: #fbbf24;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .section-content {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="flex h-screen">
+    <!-- Sidebar Toggle Button -->
+    <button id="openSidebar" class="fixed top-4 left-4 bg-gray-900 text-white px-3 py-2 rounded z-50">☰</button>
+    
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-gray-900 text-white p-5 transition-transform transform -translate-x-full">
+        <h1 class="text-xl font-bold mb-5">🥗 Smart Pantry</h1>
+        <nav>
+            <ul class="space-y-3">
+                <li><a href="dashboard.html" class="sidebar-link flex items-center space-x-2">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a></li>
+                <li><a href="inventory.html" class="sidebar-link flex items-center space-x-2">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventory</span>
+                </a></li>
+                <li><a href="recipes.html" class="sidebar-link flex items-center space-x-2">
+                    <i class="fas fa-utensils"></i>
+                    <span>Recipes</span>
+                </a></li>
+                <li><a href="notifications.html" class="sidebar-link flex items-center space-x-2">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a></li>
+                <li><a href="about.html" class="sidebar-link flex items-center space-x-2">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About Us</span>
+                </a></li>
+                <li><a href="review.html" class="sidebar-link flex items-center space-x-2">
+                    <i class="fas fa-star"></i>
+                    <span>Reviews</span>
+                </a></li>
+                <li><a href="contact.html" class="sidebar-link flex items-center space-x-2">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Us</span>
+                </a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col ml-64 shadow-lg max-w-7xl mx-auto">
+        <!-- Navbar -->
+        <div class="navbar shadow-md p-4 flex items-center justify-between rounded-lg">
+            <button id="toggleSidebar" class="md:hidden bg-gray-900 text-white px-3 py-2 rounded">☰</button>
+            <h2 class="text-lg font-semibold">Smart Pantry Dashboard</h2>
+            <nav class="hidden md:flex space-x-4">
+                <a href="dashboard.html" class="flex items-center space-x-2">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="inventory.html" class="flex items-center space-x-2">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventory</span>
+                </a>
+                <a href="recipes.html" class="flex items-center space-x-2">
+                    <i class="fas fa-utensils"></i>
+                    <span>Recipes</span>
+                </a>
+                <a href="notifications.html" class="flex items-center space-x-2">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+                <a href="about.html" class="flex items-center space-x-2">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About Us</span>
+                </a>
+                <a href="review.html" class="flex items-center space-x-2">
+                    <i class="fas fa-star"></i>
+                    <span>Reviews</span>
+                </a>
+                <a href="contact.html" class="flex items-center space-x-2">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Us</span>
+                </a>
+            </nav>
+        </div>
+        
+        <!-- Recipes Content -->
+        <main class="p-5 flex-1 overflow-y-auto">
+            <div class="container">
+                <section id="recipes" class="section">
+                    <h2 class="section-title">Recipe Suggestions</h2>
+                    <p class="section-content">Find meal ideas based on your ingredients...</p>
+                    <!-- AI Suggested Recipes Table -->
+                    <div class="mb-4">
+                        <button onclick="showSuggestedRecipes()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Show AI Suggested Recipes</button>
+                    </div>
+                    <table class="w-full border-collapse border border-gray-400 mt-4">
+                        <thead>
+                            <tr class="bg-gray-800 text-white">
+                                <th class="border border-gray-500 px-4 py-2">Recipe Name</th>
+                                <th class="border border-gray-500 px-4 py-2">Ingredients</th>
+                            </tr>
+                        </thead>
+                        <tbody id="suggestedRecipesTable">
+                            <!-- AI suggested recipes will be added here dynamically -->
+                        </tbody>
+                    </table>
+                    <!-- Add New Recipe -->
+                    <h3 class="section-title mt-6">Add Your Own Recipe</h3>
+                    <div class="mb-4">
+                        <input type="text" id="recipeName" placeholder="Recipe Name" class="p-2 border rounded">
+                        <input type="text" id="recipeIngredientsInput" placeholder="Ingredients (comma-separated)" class="p-2 border rounded">
+                        <button onclick="addRecipe()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Add Recipe</button>
+                    </div>
+                    <!-- User-Added Recipes Table -->
+                    <table class="w-full border-collapse border border-gray-400 mt-4">
+                        <thead>
+                            <tr class="bg-gray-800 text-white">
+                                <th class="border border-gray-500 px-4 py-2">Recipe Name</th>
+                                <th class="border border-gray-500 px-4 py-2">Ingredients</th>
+                                <th class="border border-gray-500 px-4 py-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recipeTable">
+                            <!-- User-added recipes will be added here dynamically -->
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("toggleSidebar").addEventListener("click", function() {
+            document.getElementById("sidebar").classList.toggle("hidden-sidebar");
+        });
+
+        document.getElementById("openSidebar").addEventListener("click", function() {
+            document.getElementById("sidebar").classList.toggle("transform");
+            document.getElementById("sidebar").classList.toggle("-translate-x-full");
+        });
+
+        // Function to show AI suggested recipes
+        function showSuggestedRecipes() {
+            // Mock data for AI suggested recipes
+            const suggestedRecipes = [
+                { name: "Spaghetti Bolognese", ingredients: "Spaghetti, Ground Beef, Tomato Sauce" },
+                { name: "Chicken Salad", ingredients: "Chicken, Lettuce, Tomatoes, Cucumber" }
+            ];
+            const tableBody = document.getElementById("suggestedRecipesTable");
+            tableBody.innerHTML = "";
+            suggestedRecipes.forEach(recipe => {
+                const row = document.createElement("tr");
+                row.innerHTML = `<td class="border border-gray-500 px-4 py-2">${recipe.name}</td><td class="border border-gray-500 px-4 py-2">${recipe.ingredients}</td>`;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to add a new recipe
+        function addRecipe() {
+            const recipeName = document.getElementById("recipeName").value;
+            const recipeIngredients = document.getElementById("recipeIngredientsInput").value;
+            const tableBody = document.getElementById("recipeTable");
+            const row = document.createElement("tr");
+            row.innerHTML = `<td class="border border-gray-500 px-4 py-2">${recipeName}</td><td class="border border-gray-500 px-4 py-2">${recipeIngredients}</td><td class="border border-gray-500 px-4 py-2"><button class="bg-red-500 text-white px-2 py-1 rounded" onclick="deleteRecipe(this)">Delete</button></td>`;
+            tableBody.appendChild(row);
+        }
+
+        // Function to delete a recipe
+        function deleteRecipe(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
+</body>
+</html>
